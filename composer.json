@@ -12,7 +12,8 @@
     "homepage": "https://github.com/vaggelis/laravelcasservice",
     "keywords": ["Laravel", "LaravelCasService"],
     "require": {
-        "illuminate/support": "~5"
+        "illuminate/support": "~5",
+        "jasig/phpcas ": "~1.5"
     },
     "require-dev": {
         "phpunit/phpunit": "~7.0",

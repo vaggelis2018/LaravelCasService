@@ -19,4 +19,15 @@
             <directory>src/</directory>
         </whitelist>
     </filter>
+    <php>
+        <env name="APP_ENV" value="testing"/>
+        <env name="CACHE_DRIVER" value="array"/>
+        <env name="SESSION_DRIVER" value="array"/>
+        <env name="QUEUE_DRIVER" value="sync"/>
+        <env name="DB_DATABASE" value=":memory:"/>
+        <env name="DB_CONNECTION" value="sqlite"/>
+        <env name="CAS_HOSTNAME" value="cas.example.test"/>
+        <env name="CAS_PORT" value="443"/>
+        <env name="CAS_PATH" value="/cas"/>
+    </php>
 </phpunit>

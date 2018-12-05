@@ -3,6 +3,8 @@
 namespace Vaggelis\LaravelCasService;
 
 use Illuminate\Support\ServiceProvider;
+use Vaggelis\LaravelCasService\Cas\CasInstance;
+use Vaggelis\LaravelCasService\Contracts\ICasInstance;
 
 class LaravelCasServiceServiceProvider extends ServiceProvider
 {
@@ -16,7 +18,7 @@ class LaravelCasServiceServiceProvider extends ServiceProvider
         // $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'vaggelis');
         // $this->loadViewsFrom(__DIR__.'/../resources/views', 'vaggelis');
         // $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
-        // $this->loadRoutesFrom(__DIR__.'/routes.php');
+//         $this->loadRoutesFrom(__DIR__.'/routes.php');
 
         // Publishing is only necessary when using the CLI.
         if ($this->app->runningInConsole()) {
@@ -37,6 +39,10 @@ class LaravelCasServiceServiceProvider extends ServiceProvider
         $this->app->singleton('laravelcasservice', function ($app) {
             return new LaravelCasService;
         });
+
+        //$this->app->register(CasEventServiceProvider::class);
+
+        $this->app->singleton(ICasInstance::class, CasInstance::class);
     }
 
     /**
