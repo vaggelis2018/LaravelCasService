@@ -4,7 +4,7 @@ namespace tests\Unit;
 
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Vaggelis\LaravelCasService\Service\CasHelper;
+use Vaggelis\LaravelCasService\Services\CasHelper;
 
 class CasHelperTest extends TestCase
 {

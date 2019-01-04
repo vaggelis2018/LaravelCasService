@@ -2,9 +2,12 @@
 
 namespace Vaggelis\LaravelCasService;
 
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Vaggelis\LaravelCasService\Contracts\ICasInstance;
+use Vaggelis\LaravelCasService\Contracts\ILaravelCasService;
 
-class LaravelCasService
+class LaravelCasService implements ILaravelCasService
 {
     private $_casInstance;
 
@@ -13,8 +16,12 @@ class LaravelCasService
         $this->_casInstance = $casInstance;
     }
 
-    public function login()
+    /**
+     * @param Request $request
+     * @return RedirectResponse
+     */
+    public function login(Request $request) : RedirectResponse
     {
-        $this->_casInstance->login();
+        return $this->_casInstance->login($request);
     }
 }

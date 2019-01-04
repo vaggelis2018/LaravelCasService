@@ -1,6 +1,6 @@
 <?php
 
-namespace Vaggelis\LaravelCasService\Service;
+namespace Vaggelis\LaravelCasService\Services;
 
 use Illuminate\Support\Facades\Config;
 
@@ -91,12 +91,6 @@ class CasHelper
      */
     const EVENT_POST_LOGIN = 'cas.post_login';
 
-    /**
-     * Stores logger.
-     *
-     * @var \Drupal\Core\Logger\LoggerChannel
-     */
-    protected $loggerChannel;
 
     /**
      * Construct the base URL to the CAS server.
@@ -119,26 +113,4 @@ class CasHelper
 
         return $url;
     }
-
-//    /**
-//     * Wrap Drupal's normal logger.
-//     *
-//     * This allows us to only log debug messages if configured to do so.
-//     *
-//     * @param mixed $level
-//     *   The message to log.
-//     * @param string $message
-//     *   The error message.
-//     * @param array $context
-//     *   The context.
-//     */
-//    public function log($level, $message, array $context = []) {
-//        // Back out of logging if it's a debug message and we're not configured
-//        // to log those types of messages. This helps keep the drupal log clean
-//        // on busy sites.
-//        if ($level == LogLevel::DEBUG && !$this->settings->get('advanced.debug_log')) {
-//            return;
-//        }
-//        $this->loggerChannel->log($level, $message, $context);
-//    }
 }

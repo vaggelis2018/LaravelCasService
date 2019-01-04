@@ -2,6 +2,7 @@
 
 namespace Vaggelis\LaravelCasService\Cas;
 
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Vaggelis\LaravelCasService\Contracts\ICasInstance;
 use Vaggelis\LaravelCasService\Contracts\ICasRedirector;
@@ -15,11 +16,10 @@ class CasInstance implements ICasInstance
         $this->casRedirector = $casRedirector;
     }
 
-    public function login(Request $request)
+    public function login(Request $request) : RedirectResponse
     {
         $serviceUrlParams = $request->query();
         $casRedirectData = new CasRedirectData($serviceUrlParams);
-        $casRedirectData->setIsCacheable(TRUE);
         return $this->casRedirector->buildRedirectResponse($casRedirectData, TRUE);
     }
 }

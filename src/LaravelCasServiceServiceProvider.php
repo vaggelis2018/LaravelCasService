@@ -5,6 +5,9 @@ namespace Vaggelis\LaravelCasService;
 use Illuminate\Support\ServiceProvider;
 use Vaggelis\LaravelCasService\Cas\CasInstance;
 use Vaggelis\LaravelCasService\Contracts\ICasInstance;
+use Vaggelis\LaravelCasService\Contracts\ICasRedirector;
+use Vaggelis\LaravelCasService\Contracts\ILaravelCasService;
+use Vaggelis\LaravelCasService\Services\CasRedirector;
 
 class LaravelCasServiceServiceProvider extends ServiceProvider
 {
@@ -36,13 +39,15 @@ class LaravelCasServiceServiceProvider extends ServiceProvider
         $this->mergeConfigFrom(__DIR__.'/../config/laravelcasservice.php', 'laravelcasservice');
 
         // Register the service the package provides.
-        $this->app->singleton('laravelcasservice', function ($app) {
-            return new LaravelCasService;
+        $this->app->singleton(ICasRedirector::class, CasRedirector::class);
+        $this->app->singleton(ICasInstance::class, function ($app) {
+            return new CasInstance($app->make(ICasRedirector::class));
+        });
+        $this->app->singleton(ILaravelCasService::class, function($app) {
+            return new LaravelCasService($app->make(ICasInstance::class));
         });
 
         //$this->app->register(CasEventServiceProvider::class);
-
-        $this->app->singleton(ICasInstance::class, CasInstance::class);
     }
 
     /**

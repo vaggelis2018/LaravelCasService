@@ -27,32 +27,6 @@ class CasRedirectData
     protected $willRedirect = TRUE;
 
     /**
-     * Indicates whether the redirect response can be cached.
-     *
-     * @var bool
-     */
-    protected $isCacheable = FALSE;
-
-    /**
-     * Cache tags to apply to cachable redirect responses.
-     *
-     * @var array
-     */
-    protected $cacheTags = ['config:cas.settings'];
-
-    /**
-     * Cache contexts to apply to cacheable redirect responses.
-     *
-     * We need to vary the redirect response based on the URL because:
-     * 1. The site domain is included in the service parameter in the redirect.
-     * 2. Parameters on the URL are passed along as query params to the service
-     * URL as well.
-     *
-     * @var array
-     */
-    protected $cacheContexts = ['url'];
-
-    /**
      * CasRedirectData constructor.
      *
      * @param array $service_parameters
@@ -157,33 +131,6 @@ class CasRedirectData
     }
 
     /**
-     * Indicate that the redirect response is cacheable.
-     *
-     * @param bool $cacheable
-     *   TRUE to set the redirect as cacheable, FALSE otherwise.
-     */
-    public function setIsCacheable(bool $cacheable) : void
-    {
-        if ($cacheable) {
-            $this->isCacheable = TRUE;
-        }
-        else {
-            $this->isCacheable = FALSE;
-        }
-    }
-
-    /**
-     * Return if the redirect response is cacheable or not.
-     *
-     * @return bool
-     *   TRUE if the redirect response is cacheable, FALSE otherwise.
-     */
-    public function getIsCacheable() : bool
-    {
-        return $this->isCacheable;
-    }
-
-    /**
      * Check if a redirect is be allowed.
      *
      * @return bool
@@ -204,54 +151,10 @@ class CasRedirectData
     }
 
     /**
-     * Prevent Redirection form occuring (may still be foreced).
+     * Prevent Redirection form occuring (may still be forced).
      */
     public function preventRedirection() : void
     {
         $this->willRedirect = FALSE;
-    }
-
-    /**
-     * Set the cache tags that will be added to the redirect response.
-     *
-     * @param array $cache_tags
-     *   The cache tags.
-     */
-    public function setCacheTags(array $cache_tags) : void
-    {
-        $this->cacheTags = $cache_tags;
-    }
-
-    /**
-     * Get the cache tags for the redirect response.
-     *
-     * @return array
-     *   The cache tags.
-     */
-    public function getCacheTags() : array
-    {
-        return $this->cacheTags;
-    }
-
-    /**
-     * Set the cache contexts for the redirect response.
-     *
-     * @param array $cache_contexts
-     *   The cache contexts.
-     */
-    public function setCacheContexts(array $cache_contexts) : void
-    {
-        $this->cacheContexts = $cache_contexts;
-    }
-
-    /**
-     * Get the cache contexts for the redirect response.
-     *
-     * @return array
-     *   The cache contexts.
-     */
-    public function getCacheContexts() : array
-    {
-        return $this->cacheContexts;
     }
 }

@@ -12,7 +12,7 @@ class CasInstanceTest extends TestCase
     /** @test */
     public function it_redirects_cas()
     {
-        dd(Config::get('laravelcasservice'));
+//        dd(Config::get('laravelcasservice'));
 //        $casInstance = new CasInstance();
 //        $casInstance->login();
 //        $response = $casInstance->login();
